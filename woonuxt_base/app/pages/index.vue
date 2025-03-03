@@ -1,7 +1,16 @@
 <script lang="ts" setup>
-const { data } = await useAsyncGql('getProductCategories');
-const productCategories = data.value.productCategories?.nodes as ProductCategory[];
+// Az adatlekérést az index komponensben végezzük
+import { computed, onMounted } from 'vue';
 
+const { data, refresh } = await useAsyncGql('getProductCategories');
+const productCategories = computed(() => 
+  data.value?.productCategories?.nodes || []
+);
+
+// Minden alkalommal frissítsünk, amikor a főoldalra navigálunk
+onMounted(() => {
+  refresh();
+});
 </script>
 
 <template>
@@ -9,7 +18,7 @@ const productCategories = data.value.productCategories?.nodes as ProductCategory
     <Hero />
     <NextHero />
     <!-- <Discounts /> -->
-    <!-- <CategorySec /> -->
+    <CategorySec :categories="productCategories" />
     <AboutSec />
     <BlogSec />
   </main>
