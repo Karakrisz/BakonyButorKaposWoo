@@ -1,9 +1,15 @@
+<script lang="ts" setup>
+const { data } = await useAsyncGql('getProductCategories');
+const productCategories = data.value.productCategories?.nodes as ProductCategory[];
+
+</script>
+
 <template>
   <main>
     <Hero />
     <NextHero />
     <!-- <Discounts /> -->
-    <CategorySec />
+    <!-- <CategorySec /> -->
     <AboutSec />
     <BlogSec />
   </main>
