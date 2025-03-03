@@ -88,7 +88,7 @@ export default defineNuxtConfig({
 
   nitro: {
     routeRules: {
-      '/': { prerender: true },
+      '/': { ssr: true }, // Teljesen dinamikus renderelés, nincs cache
       '/products/**': { swr: 3600 },
       '/checkout/order-received/**': { ssr: false },
       '/order-summary/**': { ssr: false },

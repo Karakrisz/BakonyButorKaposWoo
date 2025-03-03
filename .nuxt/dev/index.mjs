@@ -819,7 +819,7 @@ const _inlineRuntimeConfig = {
         "cache": false
       },
       "/": {
-        "prerender": true
+        "ssr": true
       },
       "/products/**": {
         "swr": 3600,
